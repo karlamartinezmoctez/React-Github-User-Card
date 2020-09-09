@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import logo from './logo.svg';
 import Card from "./Card"
 import Followers from "./Followers"
+import axios from "axios"
 
 import './App.css';
 
@@ -29,16 +30,38 @@ import './App.css';
 //1.Create Class
 //2. Add render method
 //3. State and add what info is needed
+//4. Adding Components
+//5. ComponentDidMount
 class App extends Component {
   state = {
     user: [],
     followers: []
   }
 
+  componentDidMount(){
+    axios.get('https://api.github.com/users/karlamartinezmoctez')
+    .then(response => {
+      console.log('API "User" Response', response)
+      this.setState({ user: response.data })
+    })
+    .catch(err => {
+      console.log('API "User" Error', err)
+    })
+
+    axios.get('https://api.github.com/users/karlamartinezmoctez/followers')
+    .then(response => {
+      console.log('API "Followers" Response', response)
+      this.setState({ followers: response.data })
+    })
+    .catch(err => {
+      console.log('API "Followers" Error', err)
+    })
+  }
+
   render(){
     return(
       <div>
-        <h1>Hello</h1>
+        <h1>Github User</h1>
         <Card userData={this.state.user} />
         <Followers followers={this.state.followers} />
       </div>

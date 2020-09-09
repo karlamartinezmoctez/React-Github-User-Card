@@ -1,21 +1,20 @@
-import React, {Component} from 'react';
-import App from "./App"
+import React from 'react';
 
-class Followers extends Component{
-    render(props){
+function Followers(props){
         return(
             <div>
+                <h1>Followers</h1>
                 {props.followers.map(follower =>
                     {
+                        
                         return(
                             <div key={follower.id}>
-                            <img src={follower.avatar_url} alt="follower" />
-                            </div>
+                                
+                                <div><img src={follower.avatar_url} alt="follower" /></div>
                             <div>
-                            <p>"Name:"</p>
-                            {follower.login}
-                            <p>"URL:"</p>
-                            {follower.html_url}
+                            <p>{follower.login}</p>
+                            <p><a href={follower.html_url}>{follower.html_url}</a></p>
+                            </div>
                             </div>
                         )
                     })}
@@ -23,8 +22,6 @@ class Followers extends Component{
             </div>
 
         )
-    }
-
 }
 
 export default Followers;
