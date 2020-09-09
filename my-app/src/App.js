@@ -32,6 +32,7 @@ import './App.css';
 //3. State and add what info is needed
 //4. Adding Components
 //5. ComponentDidMount
+//6. Setting the state and passing the props to initialize the components.
 class App extends Component {
   state = {
     user: [],
